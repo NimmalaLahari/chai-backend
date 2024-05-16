@@ -15,5 +15,13 @@ app.use(express.urlencoded({extended: true,limit:"16kb"}))//extract data from ur
 app.use(express.static("public"))//configuring public assets
 app.use(cookieParser())//
 
+// app.listen(process.env.PORT,()=>{
+//     console.log(`App is listening on port ${process.env.PORT}`)
+// })
+
+app.on("error",(error)=>{
+    console.log("ERR: ",error)
+    throw error
+})
 
 export{ app }
