@@ -50,10 +50,16 @@ const userSchema=new Schema({
 
 userSchema.pre("save", async function (next){
     if(!this.isModified("password")) return next();
-    
+    //if password is not modified then , the function 
+    //immediately calls the next callback to proceed 
+    //with the save operation without rehashing the
+    // password.
     this.password =bcrypt.hash(this.password,10)
     //here  bcrypt encrypts password
     next() 
+    /*Finally, the next callback is called to continue
+     with the save operation. The user's password is
+      now hashed and ready to be saved to the database.*/
 })
 //custom methods
 userSchema.methods.isPasswordCorrect=async function
