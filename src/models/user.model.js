@@ -54,7 +54,7 @@ userSchema.pre("save", async function (next){
     //immediately calls the next callback to proceed 
     //with the save operation without rehashing the
     // password.
-    this.password =bcrypt.hash(this.password,10)
+    this.password =await bcrypt.hash(this.password,10)
     //here  bcrypt encrypts password
     next() 
     /*Finally, the next callback is called to continue
